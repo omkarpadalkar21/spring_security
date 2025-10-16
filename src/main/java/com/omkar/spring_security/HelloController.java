@@ -1,12 +1,13 @@
 package com.omkar.spring_security;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
     @GetMapping
-    public String greet(){
-        return "Hello";
+    public String greet(HttpServletRequest request) {
+        return "Hello \n Your session id is: " + request.getSession().getId();
     }
 }
