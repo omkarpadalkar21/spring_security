@@ -1,6 +1,7 @@
 package com.omkar.spring_security.controller;
 
 import com.omkar.spring_security.model.Users;
+import com.omkar.spring_security.service.JwtService;
 import com.omkar.spring_security.service.UserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ public class UserController {
 
     private final UserService service;
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+
     public UserController(UserService service) {
         this.service = service;
     }
@@ -23,7 +25,7 @@ public class UserController {
     }
 
     @PostMapping(path = "/login")
-    public String login(@RequestBody Users user){
+    public String login(@RequestBody Users user) {
         return service.verify(user);
     }
 }
